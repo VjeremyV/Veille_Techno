@@ -1,0 +1,19 @@
+{
+    "name": "jeremy/veille_techno",
+    "description": "Outils de veille technologique utilisant les flux rss",
+    "require-dev": {
+        "phpunit/phpunit": "9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "VeilleTechno\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jeremy",
+            "email": "vaugoyeau.jeremy@gmail.com"
+        }
+    ],
+    "require": {}
+}
