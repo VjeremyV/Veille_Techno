@@ -1,0 +1,71 @@
+DROP TABLE IF EXISTS
+    Articles;
+CREATE TABLE Articles(
+    id_article_Articles INT AUTO_INCREMENT NOT NULL,
+    nom_Articles VARCHAR(255),
+    lien_Articles VARCHAR(255),
+    date_Articles DATETIME,
+    description_Articles TEXT,
+    img_Articles VARCHAR(255),
+    isFavoris_Articles boolean,
+    isAlire_Articles boolean,
+    id_categorie_Categories int,
+    PRIMARY KEY(id_article_Articles)
+) ENGINE = InnoDB; DROP TABLE IF EXISTS
+    Categories;
+CREATE TABLE Categories(
+    id_categorie_Categories INT AUTO_INCREMENT NOT NULL,
+    nom_Categories VARCHAR(255),
+    PRIMARY KEY(id_categorie_Categories)
+) ENGINE = InnoDB; 
+
+DROP TABLE IF EXISTS
+    Fichiers;
+CREATE TABLE Fichiers(
+    id_fichier_Fichiers INT AUTO_INCREMENT NOT NULL,
+    nom_Fichiers VARCHAR(255),
+    id_fiche_Fiches Int,
+    PRIMARY KEY(id_fichier_Fichiers)
+) ENGINE = InnoDB; 
+
+DROP TABLE IF EXISTS Refs ;
+CREATE TABLE Refs(
+    id_reference_References INT AUTO_INCREMENT NOT NULL,
+    nom_References VARCHAR(255),
+    site_References VARCHAR(255),
+    PRIMARY KEY(id_reference_References)
+) ENGINE = InnoDB; DROP TABLE IF EXISTS
+    Configuration;
+CREATE TABLE Configuration(
+    id_config_Configuration INT AUTO_INCREMENT NOT NULL,
+    intitule_Configuration VARCHAR(255),
+    corps_Configuration TEXT,
+    PRIMARY KEY(id_config_Configuration)
+) ENGINE = InnoDB; DROP TABLE IF EXISTS
+    Fiches;
+CREATE TABLE Fiches(
+    id_fiche_Fiches INT AUTO_INCREMENT NOT NULL,
+    titre_Fiches VARCHAR(255),
+    contenu_Fiches TEXT,
+    date_Fiches DATETIME,
+    id_categorie_Categories int,
+    PRIMARY KEY(id_fiche_Fiches)
+) ENGINE = InnoDB; DROP TABLE IF EXISTS
+    renvoie;
+CREATE TABLE renvoie(
+    id_fiche_Fiches int AUTO_INCREMENT NOT NULL,
+    id_reference_References int NOT NULL,
+    PRIMARY KEY(
+        id_fiche_Fiches,
+        id_reference_References
+    )
+) ENGINE = InnoDB; ALTER TABLE
+    Articles ADD CONSTRAINT FK_Articles_id_categorie_Categories FOREIGN KEY(id_categorie_Categories) REFERENCES Categories(id_categorie_Categories);
+ALTER TABLE
+    Fichiers ADD CONSTRAINT FK_Fichiers_id_fiche_Fiches FOREIGN KEY(id_fiche_Fiches) REFERENCES Fiches(id_fiche_Fiches);
+ALTER TABLE
+    Fiches ADD CONSTRAINT FK_Fiches_id_categorie_Categories FOREIGN KEY(id_categorie_Categories) REFERENCES Categories(id_categorie_Categories);
+ALTER TABLE
+    renvoie ADD CONSTRAINT FK_renvoie_id_fiche_Fiches FOREIGN KEY(id_fiche_Fiches) REFERENCES Fiches(id_fiche_Fiches);
+ALTER TABLE
+    renvoie ADD CONSTRAINT FK_renvoie_id_reference_References FOREIGN KEY(id_reference_References) REFERENCES Refs(id_reference_References);
