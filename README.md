@@ -29,5 +29,5 @@ Objectifs :
 - Revision du Modèle conceptuel de données :
   - ajout des tables 'users' et 'partage'
 - Création de la class de connexion à la base de données sur le modèle Singleton
- - Configuration de la connexion entre l'application et la bdd
- - Réalisation des tests de connexions simples
+  - Configuration de la connexion entre l'application et la bdd
+  - Réalisation des tests de connexions simples
