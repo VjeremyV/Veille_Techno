@@ -16,7 +16,7 @@ Objectifs :
  - pas de frameworks
  - tests unitaires aveec phpUnit
  
- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
  11/11/22
 - Mise en place du cadre de travail :
   - création du repository git
@@ -24,10 +24,15 @@ Objectifs :
   - ajout des dépendances 
   - conception du MCD et installation de la base de données
   
- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
  12/11/22
 - Revision du Modèle conceptuel de données :
   - ajout des tables 'users' et 'partage'
 - Création de la class de connexion à la base de données sur le modèle Singleton
   - Configuration de la connexion entre l'application et la bdd
   - Réalisation des tests de connexions simples
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 13/11/22
+- Mise en place du routeur :
+  - création des classes Router, Route, RouterException
+  - Création et configuration du htaccess pour les redirections
