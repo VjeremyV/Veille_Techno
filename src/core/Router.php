@@ -1,44 +1,12 @@
 <?php
 
-namespace VeilleTechno\core;
+use VeilleTechno\classes\routing\Router; 
 
-use VeilleTechno\classes\routing\Route;
-use VeilleTechno\classes\routing\RouterException;
+$router = new Router($_GET['url']);
 
-class Router {
-    private $url;
-    private $routes = [];
-     
-    public function __construct($url)
-    {
-        $this->url = $url;
-    }
-
-    public function get($path, $callable){
-        $route = new Route($path, $callable);
-        $this->routes['GET'][] = $route;
-        return $route;
-    }
-
-    public function post($path, $callable){
-        $route = new Route($path, $callable);
-        $this->routes['POST'][] = $route;
-        return $route;
-    }
-
-
-    public function run(){     
-     if(!isset($this->routes[$_SERVER['REQUEST_METHOD']])){
-        throw new RouterException('REQUEST_METHOD does not exist');
-     }
-     foreach($this->routes[$_SERVER['REQUEST_METHOD']] as $route){
-        if($route->match($this->url)){
-            return $route->getCallable();
-        }
-     }
-     throw new RouterException('No routes matches');
-    }
-    public function getRoutes(){
-        return $this->routes;
-    }
-}
+$router->get('/post', function(){ echo 'tous les articles';});
+$router->get('/post/:id', function($id){ echo 'Afficher l\'article '.$id;});
+$router->get('/article/:slug-:id', function($slug, $id){ echo 'article '.$slug.": ".$id;});
+$router->get('/articles/:id-:slug', function($id, $slug)use ($router){ echo $router->url('articles.show', ['id'=> 1, 'slug'=> 'salut-les-gens']);}, 'articles.show')->with('id', '[0-9]+')->with('slug','[a-z/-0-9]+');
+$router->post('/post/:id', function($id){ echo 'poster l\'article '.$id;});
+$router->run();
