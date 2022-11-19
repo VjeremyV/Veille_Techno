@@ -39,3 +39,8 @@ Objectifs :
 - Mise en place du routeur :
   - création des classes Router, Route, RouterException
   - Création et configuration du htaccess pour les redirections
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+19/11/22
+- Modification système de router :
+ - deplacement de la class Router
+ - ajout des fonctions pour la gestion de routes complexes
