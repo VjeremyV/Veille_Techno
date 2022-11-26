@@ -48,4 +48,5 @@ Objectifs :
 20/11/22
  - Finalisation système de routing
  - création du système de controller + premier controller
+ - Correction MCD + BDD
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
