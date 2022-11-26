@@ -50,3 +50,6 @@ Objectifs :
  - création du système de controller + premier controller
  - Correction MCD + BDD
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+26/11/22 
+ - Création de la classe Template pour gérer le vues dynamiquement
+   - création des méthodes : display_head, display_header, display_footer, display_main_content, add_endhtml
