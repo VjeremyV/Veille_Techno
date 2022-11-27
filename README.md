@@ -53,3 +53,8 @@ Objectifs :
 26/11/22 
  - Création de la classe Template pour gérer le vues dynamiquement
    - création des méthodes : display_head, display_header, display_footer, display_main_content, add_endhtml
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+27/11/22
+- modification de la classe Template
+- création de la maquette fonctionnelle
+- reflexion sur modification de la BDD
