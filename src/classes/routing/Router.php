@@ -23,7 +23,6 @@ class Router {
         // créer une route en method post
     public function post(string $path, mixed $callable,string $name = null){
         return $this->add($path, $callable, $name, 'POST');
-
     }
 
     //Ajoute une route

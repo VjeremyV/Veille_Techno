@@ -4,41 +4,19 @@ namespace VeilleTechno\classes\vues;
 
 class Template {
 
-    public static function display_head(string $title, string $desc, array $css = []){
-        $links='';
-        $path_css= $_SERVER['HTTP_HOST'].'/assets/css/';
-        if(count($css) > 0){
-            foreach($css as $link){
-                $link=  $path_css.$link;
-                $links .=    file_get_contents('http://'.$link);
-                // $links .=    '<link rel="stylesheet" href="'.$link.' type="text/css"">';
-            }
-        }
-        echo '
-                    <html lang="fr">
-            <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <meta name="description" content="'.$desc.'">
-                <style>'.$links.'</style>
-                <title>'.$title.'</title>
-            </head>
-            <body>
-            
-            
-       ';
+    public static function construct_page(string $title, string $desc, string $template, array $css = []){
+        self::display_head( $title, $desc, $css);
+        self::display_main_content($template);
+        self::add_endhtml();
     }
-    public static function display_header(){
-        echo ' <header> fesfesfsef</header>';
+    private static function display_head(string $title, string $desc, array $css = []){
+          require_once(__DIR__.'/../../../templates/elements/head.php');
     }
-    public static function display_main_content(){
-        echo' <main></main>';
+    private static function display_main_content(string $template){
+        require_once(__DIR__.'/../../../templates/pages/'.$template);
     }
-    public static function display_footer(){
-        echo '<footer></footer>';
-    }
-    public static function add_endhtml(){
+
+    private static function add_endhtml(){
         echo '</body>
         </html>';
     }

@@ -56,7 +56,7 @@ class Route
         return '([^/]+)';
     }
 
-    // Renoie l'url de la route
+    // Renvoie l'url de la route
     public function getUrl(array $params){
         $path = $this->path;
         foreach($params as $key => $value){

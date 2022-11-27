@@ -6,11 +6,7 @@ use VeilleTechno\classes\vues\Template;
 class AccueilController{
 
     public function index(){
-        Template::display_head('Accueil', 'bonjour c\'est l\'accueil', ['accueil.css', 'common.css']);
-        Template::display_header();
-        Template::display_main_content();
-        Template::display_footer();
-        Template::add_endhtml();
+      Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css']);
 
     }
 }
