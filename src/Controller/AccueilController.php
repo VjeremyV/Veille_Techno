@@ -6,7 +6,9 @@ use VeilleTechno\classes\vues\Template;
 class AccueilController{
 
     public function index(){
-      Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css']);
-
+      $params= ['prout', 1 ,2];
+      Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], $params);
     }
+
+
 }

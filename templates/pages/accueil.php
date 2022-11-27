@@ -1,1 +1,2 @@
-petit test des familles
+<?php
+var_dump($params);
