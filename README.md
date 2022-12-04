@@ -58,3 +58,8 @@ Objectifs :
 - modification de la classe Template
 - création de la maquette fonctionnelle
 - reflexion sur modification de la BDD
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+04/12/22
+ - correction de la fonction et du template d'affichage des bas de page
+ - Ajout du formulaire d'inscritpion + ajout de la route '/' dans le tableau des méthodes 'POST'
+ - création de la classe FormChecker + création des première méthodes de vérifications des formulaires
