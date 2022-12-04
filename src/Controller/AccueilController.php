@@ -13,17 +13,23 @@ class AccueilController{
       Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
     }
 
+
     private function inscription(){
-      var_dump($_POST);
+      // var_dump($_POST);
       $formchecker = new Formchecker();
-      if($formchecker->is_unique('michel', 'Users', 'pseudo_Users')){
-        echo 'unique';
+      $checked = $formchecker->check_profil_data($_POST);
+      if(isset($checked['nom'])){
+           $stmt = Bdd::getInstance()->prepare('INSERT INTO users(pseudo_Users, nom_Users, prenom_Users, mdp_Users, mail_Users	) VALUES (:pseudo, :nom, :prenom, :mdp, :mail)');
+          if($stmt->execute(['pseudo' => $checked['pseudo'], 'nom' => $checked['nom'], 'prenom' => $checked['prenom'], 'mdp' => $checked['pwd'], 'mail' => $checked['mail']])){
+            $params = ['inscription' => 'ok'];
+            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
+          }else {
+            $params = ['inscription' => 'pb bdd'];
+            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
+          }     
       } else {
-        echo 'pas unique';
-      };
-        // $stmt = Bdd::getInstance()->prepare('INSERT INTO users(pseudo_Users, nom_Users, prenom_Users, mdp_Users, mail_Users	) VALUES (:pseudo, :nom, :prenom, :mdp, :mail)');
-        // $stmt->execute(['pseudo' => $_POST['pseudo'], 'nom' => $_POST['nom'], 'prenom' => $_POST['prenom'], 'mdp' => $_POST['pwd'], 'mail' => $_POST['mail']]);  
-      
+        Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $checked);
+      }
  }
 
     private function connexion(){}
