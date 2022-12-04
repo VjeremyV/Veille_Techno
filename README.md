@@ -62,4 +62,6 @@ Objectifs :
 04/12/22
  - correction de la fonction et du template d'affichage des bas de page
  - Ajout du formulaire d'inscritpion + ajout de la route '/' dans le tableau des méthodes 'POST'
- - création de la classe FormChecker + création des première méthodes de vérifications des formulaires
+ - création de la classe FormChecker + création des première méthodes de vérifications des formulaires + création de la fonction validant le formalaire d'inscriptions
+ - modification de la méthode Accueil#inscription
+ - système inscription ok
