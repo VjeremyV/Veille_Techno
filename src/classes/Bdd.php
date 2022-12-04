@@ -37,7 +37,7 @@ class Bdd{
     public function __wakeUp( ) {
         // Vérification de la connexion
         if(self::$instance instanceof self) {
-                throw new MySQLException();
+                throw new Exception();
         }
         // Correction de la reference
         self::$instance = $this;
