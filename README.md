@@ -65,3 +65,9 @@ Objectifs :
  - création de la classe FormChecker + création des première méthodes de vérifications des formulaires + création de la fonction validant le formalaire d'inscriptions
  - modification de la méthode Accueil#inscription
  - système inscription ok
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+10/12/22
+- ajout du système de connexion et d'authentification
+ - création de la classe authentification/Connection 
+ - ajout des méthodes de vérification du formulaire dans la class Formchecker
+ - ajout du formulaire de connexion + messages d'erreurs
