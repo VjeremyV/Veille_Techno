@@ -2,6 +2,8 @@
 
 namespace VeilleTechno\Controller;
 
+use PDO;
+use VeilleTechno\classes\authentification\Connection;
 use VeilleTechno\classes\Bdd;
 use VeilleTechno\classes\form\Formchecker;
 use VeilleTechno\classes\vues\Template;
@@ -45,7 +47,31 @@ class AccueilController{
   *
   * @return void
   */
-    private function connexion(){}
+    private function connexion(){
+      $formchecker = new Formchecker();
+      $checked = $formchecker->check_connection_data($_POST);
+      if(isset($checked['pseudo_connection'])){
+        $stmt = Bdd::getInstance()->prepare('SELECT * FROM Users WHERE pseudo_Users = :pseudo');
+        if($stmt->execute(['pseudo' => $checked['pseudo_connection']]) > 0){
+          $result = $stmt->fetchAll($fetchMode = PDO::FETCH_NAMED);
+          if(count($result) > 0 ){
+            if(password_verify($checked['pwd_connection'], $result[0]['mdp_Users'])){
+              $connexion = new Connection();
+              $connexion->create_connection($result[0]);
+              header('Location: /mon-actu');            
+            }
+          } else {
+            $params = ['connexion' => 'fail_pseudo'];
+            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
+          }
+        }
+      } else {
+        Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $checked);
+
+      }
+
+
+    }
 
     /**
      * Permet d'indentifier quel formulaire choisir lors de l'appelle de la route '/' avec la méthode Post

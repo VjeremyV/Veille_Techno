@@ -59,6 +59,32 @@ class Formchecker {
     }
 
     /**
+     * vérfie et nettoie la data du formulaire de connexion
+     *
+     * @param array $connection_data
+     * @return array
+     */
+    public function check_connection_data(array $connection_data):array{
+        $clean_form = [];
+        $errors = [];
+        if(!empty($connection_data['pseudo_connection'])) {
+            $clean_form['pseudo_connection']= $this->string_clean($connection_data['pseudo_connection']);
+        } else {
+            $errors['pseudo_connection error']= "Veuillez renseigner votre pseudo";
+        }
+        if(!empty($connection_data['pwd_connection'])){
+            $clean_form['pwd_connection']= $this->string_clean($connection_data['pwd_connection']);
+        } else {
+            $errors['pwd_connection error']= "Veuillez renseigner votre mot de passe"; 
+        }
+        if(count($errors) > 0){
+            return $errors;
+        } 
+        return $clean_form;
+    }
+
+
+    /**
      * nettoie une string pour intégration en bdd
      *
      * @param string $string
@@ -82,6 +108,7 @@ class Formchecker {
         return false;
     }
 
+  
     /**
      * vérifie que l'élément n'est pas déjà présent dans une table de la bdd
      *
