@@ -71,3 +71,11 @@ Objectifs :
  - création de la classe authentification/Connection 
  - ajout des méthodes de vérification du formulaire dans la class Formchecker
  - ajout du formulaire de connexion + messages d'erreurs
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+17/12/22
+- ajout du tableau de bord dans la page fil d'actualité
+ - ajout du template bootstrap
+ - modification de la class Template pour intégrer les cdn de bootstrap
+ - modification de la class Template pour intégrer des morceaaux de templates indpendants du contenu principal
+ - modification des fichiers head.php et end_html.php pour intégrer les ressources js et css de façon plus flexibl
+ - modification des controllers accueil et fil d'actu pour qu'ils répondent aux nouveaux besoins de la class Template
