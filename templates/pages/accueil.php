@@ -106,5 +106,7 @@
 <div>
     <?php if (isset($params['connexion']) && $params['connexion'] === 'fail_pseudo') : ?>
         Le pseudo n'existe pas
+    <?php elseif (isset($params['connexion']) && $params['connexion'] === 'fail_mdp') :?>   
+        Le mot de passe est erroné 
     <?php endif ?>
 </div>

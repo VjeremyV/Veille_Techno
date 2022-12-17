@@ -17,7 +17,7 @@ class AccueilController{
    */
     public function index(){
       $params= ['prout', 1 ,2];
-      Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
+      Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'=> 'footer'], $params);
     }
 
 /**
@@ -32,13 +32,13 @@ class AccueilController{
            $stmt = Bdd::getInstance()->prepare('INSERT INTO users(pseudo_Users, nom_Users, prenom_Users, mdp_Users, mail_Users	) VALUES (:pseudo, :nom, :prenom, :mdp, :mail)');
           if($stmt->execute(['pseudo' => $checked['pseudo'], 'nom' => $checked['nom'], 'prenom' => $checked['prenom'], 'mdp' => $checked['pwd'], 'mail' => $checked['mail']])){
             $params = ['inscription' => 'ok'];
-            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
+            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'=> 'footer'], $params);
           }else {
             $params = ['inscription' => 'pb bdd'];
-            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
+            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'=> 'footer'], $params);
           }     
       } else {
-        Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $checked);
+        Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'=> 'footer'], $checked);
       }
  }
 
@@ -59,14 +59,19 @@ class AccueilController{
               $connexion = new Connection();
               $connexion->create_connection($result[0]);
               header('Location: /mon-actu');            
+            } else {
+
+              Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js' => 'footer'], ['connexion' => 'fail_mdp']);
             }
           } else {
+            //pseudo érroné
             $params = ['connexion' => 'fail_pseudo'];
-            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $params);
+            Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'=> 'footer'], $params);
           }
         }
       } else {
-        Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'], $checked);
+        //pseudo non renseigné
+        Template::construct_page('Accueil', 'description de la page d\'accueil', 'accueil.php', ['accueil.css', 'common.css'], ['test.js'=> 'footer'], $checked);
 
       }
 
