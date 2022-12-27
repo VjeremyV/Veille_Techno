@@ -79,3 +79,9 @@ Objectifs :
  - modification de la class Template pour intégrer des morceaaux de templates indpendants du contenu principal
  - modification des fichiers head.php et end_html.php pour intégrer les ressources js et css de façon plus flexibl
  - modification des controllers accueil et fil d'actu pour qu'ils répondent aux nouveaux besoins de la class Template
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+27/12/22
+- Ajout de la class UrlDecomposer.php
+- Ajout de la methode construct_page_connected() dans la class Template
+- Correction des templates elements/user_footer.php et elements/user_nav.fr
+- ajout des methodes add_source() et what_form() dans le FilactuController
