@@ -1,3 +1,10 @@
+<?php
+
+use VeilleTechno\classes\authentification\Connection;
+$connection = new Connection;
+$connection->is_connected_redirection();
+
+?>
 <html lang="fr">
 
 <head>

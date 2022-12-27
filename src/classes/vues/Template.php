@@ -24,6 +24,13 @@ class Template
         self::check_other_template($other_template, 'after');
         self::add_endhtml($js);
     }
+
+    public static function construct_page_connected(string $title, string $desc, string $template, array $css = [], $js = [], array $params = [], array $header_params = [], array $footer_params = []){
+        array_unshift($css, 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css','app.css');
+        $js = ['app.js'=> 'head'] + $js;
+        Self::construct_page($title, $desc, $template,  $css, $js, $params, [['before', 'user_nav.php', 'elements', $header_params], ['after', 'user_footer.php', 'elements', $footer_params]]);
+ 
+    }
     /**
      * affiche le head
      *

@@ -15,6 +15,7 @@ $router = new Router($_GET['url']);
 $router->get('/', "Accueil#index");
 $router->post('/', "Accueil#what_form");
 $router->get('/mon-actu', "Filactu#index");
+$router->post('/mon-actu', "Filactu#what_form");
 // $router->get('/post', function(){ echo 'tous les articles';});
 // $router->get('/post/:id', "Post#show");
 // $router->get('/article/:slug-:id', function($slug, $id){ echo 'article '.$slug.": ".$id;});

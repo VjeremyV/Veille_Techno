@@ -3,14 +3,41 @@
 namespace VeilleTechno\Controller;
 
 use VeilleTechno\classes\authentification\Connection;
+use VeilleTechno\classes\form\Formchecker;
 use VeilleTechno\classes\vues\Template;
+use VeilleTechno\classes\Bdd;
+use VeilleTechno\classes\form\UrlDecomposer;
 
-class FilactuController {
-    public function index(){
+class FilactuController
+{
+    public function index()
+    {
         $connection = new Connection();
         $connection->is_connected_redirection();
-        Template::construct_page('Mon fil d\'actu', 'description de la page de la page fil d\'actu', 'fil_actu.php', ['https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css','app.css', 'common.css', 'actu.css'], ['app.js'=> 'head','test.js' => 'footer'], ['connexion' => 'fail_mdp'], [['before', 'user_nav.php', 'elements']]);
+        Template::construct_page_connected('Mon fil d\'actu', 'description de la page de la page fil d\'actu', 'fil_actu.php', ['common.css', 'actu.css'], ['test.js' => 'footer'], [], [], []);
+    }
 
-        echo'Bienvenue au prout d\'acutalités '.$_SESSION['pseudo'];
+    public function what_form()
+    {
+        self::add_source();
+    }
+
+    private function add_source()
+    {
+        $connection = new Connection();
+        $connection->is_connected_redirection();
+        $checker = new Formchecker;
+        if (isset($_POST['addSource'])) {
+            if ($checker->is_valid_url($_POST['addSource'])) {
+                $stmt = Bdd::getInstance()->prepare('INSERT INTO Bibliographie(nom_Bibliographie, site_Bibliographie, flux_rss_Bibliographie, id_Users) VALUES (:nom, :urlSite, :urlRss, :user)');
+                $urlDecomposer = new UrlDecomposer;
+                $host = $urlDecomposer->get_host($_POST['addSource']);
+                if ($stmt->execute(['nom' => $host, 'urlSite' => '', 'urlRss' => $_POST['addSource'], 'user' => $_SESSION['id']])) {
+                    Template::construct_page_connected('Mon fil d\'actu', 'description de la page de la page fil d\'actu', 'fil_actu.php', ['common.css', 'actu.css'], ['test.js' => 'footer'], ['addSuccess' => 'ok']);
+                }
+            } else {
+                echo 'mauvaise url';
+            }
+        }
     }
 }
