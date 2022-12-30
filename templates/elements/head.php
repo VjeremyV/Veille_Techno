@@ -2,7 +2,9 @@
 
 use VeilleTechno\classes\authentification\Connection;
 $connection = new Connection;
-$connection->is_connected_redirection();
+if($connection->is_connect()){
+  $connection->is_connected_redirection();
+}
 
 ?>
 <html lang="fr">

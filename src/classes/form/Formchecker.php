@@ -92,9 +92,9 @@ class Formchecker
      * nettoie une string pour intégration en bdd
      *
      * @param string $string
-     * @return void
+     * @return string
      */
-    public function string_clean(string $string)
+    public function string_clean(string $string):string
     {
         return htmlentities($string);
     }
@@ -170,6 +170,13 @@ class Formchecker
 
     public function is_valid_url(string $url): bool{
         $url = self::string_clean($url);
-        return filter_var($url, FILTER_VALIDATE_URL);
+        if(filter_var($url, FILTER_VALIDATE_URL)){
+            $page = file_get_contents($url);
+            if(strstr($page, '<channel>')){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }

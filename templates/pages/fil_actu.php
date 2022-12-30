@@ -10,12 +10,23 @@
 							<input type="submit" class="btn btn-primary" value="+">
 						</div>
 					</form>
-				<?php if(isset($params['addSuccess']) && $params['addSuccess'] === "ok"):?>
-					<div class="messageBox alert alert-success mx-auto" role="alert">
-						La nouvelle source a bien été ajoutée
-					</div>
-					<?php endif?>
+					<?php
+
+					use VeilleTechno\classes\rss\Rss;
+
+					if (isset($params['addSuccess']) && $params['addSuccess'] === "ok") : ?>
+						<div class="messageBox alert alert-success mx-auto" role="alert">
+							La nouvelle source a bien été ajoutée
+						</div>
+					<?php elseif (isset($params['addSuccess']) && $params['addSuccess'] === "non") : ?>
+						<div class="messageBox alert alert-danger mx-auto" role="alert">
+							L'Url n'est pas renseignée dans le bon format ou n'est pas valide
+						</div>
+					<?php endif ?>
 				</div>
+
+
+
 
 				<?php if (isset($_SESSION)) {
 					var_dump($_SESSION);
@@ -27,6 +38,8 @@
 					var_dump($params);
 				};
 
-
+				$rss = new Rss;
+				echo'rss ici';
+				var_dump($rss->display_rss($_SESSION['id']));
 				?>
 			</main>

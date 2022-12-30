@@ -44,7 +44,7 @@ class Template
         require_once(__DIR__ . '/../../../templates/elements/head.php');
     }
     /**
-     * affichele contenu principale
+     * affiche le contenu principale
      *
      * @param string $template
      * @param array $params
