@@ -85,3 +85,10 @@ Objectifs :
 - Ajout de la methode construct_page_connected() dans la class Template
 - Correction des templates elements/user_footer.php et elements/user_nav.fr
 - ajout des methodes add_source() et what_form() dans le FilactuController
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+30/12/22
+- Correction du template head.php
+- correction du mvc et de la bdd pour les configurations d'affichage des flux
+- Correction de la methode is_valid_url qui vérifie la validité d'une url RSS
+- Correction du formulaire d'ajout d'url RSS pour qu'il n'accpetee qu'une seule version d'une même url pour chaque utilisateur
+- Ajout de la class Rss.php
