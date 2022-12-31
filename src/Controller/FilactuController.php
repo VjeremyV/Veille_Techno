@@ -35,7 +35,8 @@ class FilactuController
                     $stmt = Bdd::getInstance()->prepare('INSERT INTO Bibliographie(nom_Bibliographie, site_Bibliographie, flux_rss_Bibliographie, id_Users) VALUES (:nom, :urlSite, :urlRss, :user)');
                     $urlDecomposer = new UrlDecomposer;
                     $host = $urlDecomposer->get_host($_POST['addSource']);
-                    if ($stmt->execute(['nom' => $host, 'urlSite' => '', 'urlRss' => $_POST['addSource'], 'user' => $_SESSION['id']])) {
+                    $url_site = $urlDecomposer->get_site_url($_POST['addSource']);
+                    if ($stmt->execute(['nom' => $host, 'urlSite' => $url_site, 'urlRss' => $_POST['addSource'], 'user' => $_SESSION['id']])) {
                         Template::construct_page_connected('Mon fil d\'actu', 'description de la page de la page fil d\'actu', 'fil_actu.php', ['common.css', 'actu.css'], ['test.js' => 'footer'], ['addSuccess' => 'ok']);
                     }  
                 } else {

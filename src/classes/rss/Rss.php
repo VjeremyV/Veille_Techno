@@ -42,15 +42,13 @@ class Rss
 
      public function display_rss(int $user){
         $config = $this->get_rss($user);
-        $titles = [];
+        $items = [];
         foreach($config as $rss){
             $rss_load = simplexml_load_file($rss['flux_rss_Bibliographie']);
             foreach($rss_load->channel->item as $item){
-                $titles[] = $item;
-                // $titles[] = $item->description->__toString();
-                // $titles[] = $item->title->__toString();
-            }
+                $items[$rss['nom_Bibliographie']][$rss['site_Bibliographie']][] = $item;
+               }
         }
-        return $titles;
+        return $items;
     }
 }

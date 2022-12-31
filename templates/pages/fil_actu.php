@@ -27,19 +27,55 @@
 
 
 
+				<div class="container">
 
-				<?php if (isset($_SESSION)) {
-					var_dump($_SESSION);
-				};
-				if (isset($_POST)) {
-					var_dump($_POST);
-				};
-				if (isset($params)) {
-					var_dump($params);
-				};
+					<div class="row">
+						<?php
+						$rss = new Rss;
+						$items = $rss->display_rss($_SESSION['id']);
+						foreach ($items as $name => $elements) :
+							foreach ($elements as $flux => $content) :
+						?>
+						<form action="" id='<?=$name?>-form' class='settings-form'>
+							<h3><?=$name?></h3>
+							<i class="fa fa-gear"></i>
+						</form>
+								<?php
+								foreach ($content as $item) :
+									$start_bal_img = strstr($item->description->__toString(), '<img');
+									if ($start_bal_img) {
+										$src = strstr($start_bal_img, "src");
+										if ($src[4] === '"') {
+											$src = explode('"', $src);
+										} elseif ($src[4] === "'") {
+											$src = $src = explode('"', $src);
+										}
+									}
+									if (substr($src[1], 0, 1) === '/') {
+										$src[1] = $flux . $src[1];
+									}
+								?>
+									<div class="col-md-4">
+										
+										<a href="<?= $item->link->__toString()?>" class="card mb-4 box-shadow">
+											<img class="card-img-top" src="<?= $src[1] ?>">
+											<div class="card-body">
+												<h4><?= $item->title->__toString() ?></h4>
+												<p class="card-text"><?= substr(strip_tags($item->description->__toString()), 0, 150) ?>(...)</p>
+												<div class="d-flex justify-content-between align-items-center">
+													<div class="btn-group">
+														<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+														<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+													</div>
+													<small class="text-muted">9 mins</small>
+												</div>
+											</div>
+										</a>
+									</div>
 
-				$rss = new Rss;
-				echo'rss ici';
-				var_dump($rss->display_rss($_SESSION['id']));
-				?>
+						<?php
+								endforeach;
+							endforeach;
+						endforeach;
+						?>
 			</main>

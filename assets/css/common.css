@@ -12,3 +12,17 @@
 .messageBox {
     width: fit-content;
 }
+
+.settings-form{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.settings-form h3, .settings-form i {
+    margin: 5px;
+}
+
+.settings-form i {
+    cursor: pointer;
+}
