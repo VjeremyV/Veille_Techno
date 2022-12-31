@@ -92,3 +92,10 @@ Objectifs :
 - Correction de la methode is_valid_url qui vérifie la validité d'une url RSS
 - Correction du formulaire d'ajout d'url RSS pour qu'il n'accpetee qu'une seule version d'une même url pour chaque utilisateur
 - Ajout de la class Rss.php
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+31/12/22
+- filActu.php -> affichage des articles des flux rss renseignés en bdd
+- ajout de font-awesome dans les css à charger depuis Template.php
+- ajout de la methode get_site_url() dans la class UrlDecomposer.php
+- ajout de la methode display_rss() dans la class Rss.php
+- mise en forme et style sur common.css
